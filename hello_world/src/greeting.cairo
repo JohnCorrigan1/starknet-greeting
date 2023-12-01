@@ -1,4 +1,4 @@
-use starknet::ContractAddress;
+use starknet::{storage, ContractAddress};
 
 #[starknet::interface]
 trait IGreetingContract<TContractState> {
