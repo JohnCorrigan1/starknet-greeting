@@ -8,7 +8,7 @@ trait IGreetingContract<TContractState> {
 }
 
 #[starknet::contract]
-mod Greeting {
+mod greeting {
     use starknet::get_caller_address;
     use starknet::ContractAddress;
 
@@ -16,6 +16,12 @@ mod Greeting {
     struct Storage {
         greeting: felt252,
         last_greeter: ContractAddress,
+        owner: ContractAddress,
+    }
+
+    #[constructor]
+    fn constructor(ref self: ContractState, init_owner: ContractAddress) {
+        self.owner.write(init_owner);
     }
 
     impl Greeting of super::IGreetingContract<ContractState> {
